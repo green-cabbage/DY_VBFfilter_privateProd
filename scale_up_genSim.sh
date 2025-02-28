@@ -2,7 +2,7 @@
 
 # Binds for singularity containers
 # Mount /afs, /eos, /cvmfs, /etc/grid-security for xrootd
-export APPTAINER_BINDPATH='/afs,/cvmfs,/cvmfs/grid.cern.ch/etc/grid-security:/etc/grid-security,/eos,/etc/pki/ca-trust,/run/user,/var/run/user'
+export APPTAINER_BINDPATH='/cvmfs,/cvmfs/grid.cern.ch/etc/grid-security:/etc/grid-security,/etc/pki/ca-trust,/run/user,/var/run/user'
 
 # Make voms proxy
 # voms-proxy-init --voms cms --out $(pwd)/voms_proxy.txt --hours 4
@@ -20,7 +20,6 @@ echo "###################################################"
 echo "Input Arguments (Cluster ID): $1"
 echo "Input Arguments (Proc ID): $2"
 echo "Input Arguments (Output Dir): $3"
-echo "Input Arguments (output file): $4"
 echo ""
 
 
@@ -67,15 +66,15 @@ cd ${step1}/src
 eval `scram runtime -sh`
 scram b
 cd -
-cmsRun ${step1_cfg} seedval=${seed}
+cmsRun ${step1_cfg} seedval=${seed} outputFile=root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Test/genSim_$1_$2.root
 echo "list all files"
 ls -ltrh
 
 # Copy output nanoAOD file to output directory
 echo "Copying output nanoAOD file to output directory"
 ls -ltrh
-echo "cp -f RunIISummer20UL18wmLHEGEN-00314_inLHE.root $3/genSim_$1_$2.root"
-cp -f RunIISummer20UL18wmLHEGEN-00314_inLHE.root $3/genSim_$1_$2.root
+# echo "cp -f RunIISummer20UL18wmLHEGEN-00314_inLHE.root $3/genSim_$1_$2.root"
+# cp -f RunIISummer20UL18wmLHEGEN-00314_inLHE.root $3/genSim_$1_$2.root
 echo "Job finished on " $(date)
 
 EndOfLHE
@@ -93,6 +92,6 @@ else
   exit 1
 fi
 export SINGULARITY_CACHEDIR="/tmp/$(whoami)/singularity"
-singularity run --no-home /cvmfs/unpacked.cern.ch/registry.hub.docker.com/cmssw/$CONTAINER_NAME $(echo $(pwd)/EndOfLHE.sh)
+singularity run --no-home /cvmfs/unpacked.cern.ch/registry.hub.docker.com/cmssw/$CONTAINER_NAME $(echo $(pwd)/EndOfLHE.sh $1 $2 $3)
 
 

@@ -32,7 +32,7 @@ process.load('Configuration.StandardSequences.EndOfProcess_cff')
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
 process.MessageLogger.cerr.FwkReport.reportEvery = cms.untracked.int32(500)
 
-Nevents = 100 # 25000
+Nevents = 50 # 25000
 process.maxEvents = cms.untracked.PSet(
     input = cms.untracked.int32(Nevents)
 )
@@ -75,7 +75,8 @@ process.LHEoutput = cms.OutputModule("PoolOutputModule",
         dataTier = cms.untracked.string('LHE'),
         filterName = cms.untracked.string('')
     ),
-    fileName = cms.untracked.string('file:SMP-RunIISummer20UL18wmLHEGEN-00314_inLHE.root'),
+    # fileName = cms.untracked.string('file:SMP-RunIISummer20UL18wmLHEGEN-00314_inLHE.root'),
+    fileName = cms.untracked.string(options.outputFile),
     outputCommands = process.LHEEventContent.outputCommands,
     splitLevel = cms.untracked.int32(0)
 )
