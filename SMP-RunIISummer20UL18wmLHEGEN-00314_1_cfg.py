@@ -32,8 +32,9 @@ process.load('Configuration.StandardSequences.EndOfProcess_cff')
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
 process.MessageLogger.cerr.FwkReport.reportEvery = cms.untracked.int32(500)
 
+Nevents = 100 # 25000
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(1500)
+    input = cms.untracked.int32(Nevents)
 )
 
 # Input source
@@ -43,9 +44,10 @@ process.options = cms.untracked.PSet(
 
 )
 
+
 # Production Info
 process.configurationMetadata = cms.untracked.PSet(
-    annotation = cms.untracked.string('Configuration/GenProduction/python/HIG-RunIIFall18wmLHEGS-00874-fragment.py nevts:1500'),
+    annotation = cms.untracked.string("Configuration/GenProduction/python/HIG-RunIIFall18wmLHEGS-00874-fragment.py nevts:"+str(Nevents)),
     name = cms.untracked.string('Applications'),
     version = cms.untracked.string('$Revision: 1.19 $')
 )
@@ -241,7 +243,7 @@ process.genParticlesForJetsNoNu = cms.EDProducer("InputGenJetsParticleSelector",
 
 process.externalLHEProducer = cms.EDProducer("ExternalLHEProducer",
     args = cms.vstring('/cvmfs/cms.cern.ch/phys_generator/gridpacks/2017/13TeV/madgraph/V5_2.4.2/dymumu012j_5f_NLO_FXFX_M105to160/v1/dymumu012j_5f_NLO_FXFX_M105to160_slc6_amd64_gcc481_CMSSW_7_1_30_tarball.tar.xz'),
-    nEvents = cms.untracked.uint32(1500),
+    nEvents = cms.untracked.uint32(Nevents),
     numberOfParameters = cms.uint32(1),
     outputFile = cms.string('cmsgrid_final.lhe'),
     scriptName = cms.FileInPath('GeneratorInterface/LHEInterface/data/run_generic_tarball_cvmfs.sh')
