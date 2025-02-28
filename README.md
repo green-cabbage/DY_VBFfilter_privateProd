@@ -12,3 +12,22 @@ production chain is taken from: https://cms-pdmv-prod.web.cern.ch/mcm/chained_re
 fragment file for 2018 is taken from: https://cms-pdmv-prod.web.cern.ch/mcm/public/restapi/requests/get_setup/HIG-RunIIFall18wmLHEGS-00874
 
 
+## Step 3
+
+Run
+```
+sbatch slurm_setup.sh 
+
+```
+
+Check progress on
+```
+squeue -u yun79
+
+```
+
+cancel all running jobs with
+```
+scancel -u yun79
+
+```
