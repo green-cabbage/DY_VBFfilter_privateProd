@@ -1,0 +1,119 @@
+WARNING: In non-interactive mode release checks e.g. deprecated releases, production architectures are disabled.
+WARNING: In non-interactive mode release checks e.g. deprecated releases, production architectures are disabled.
+WARNING: You are trying to use SCRAM architecture 'slc6' on host with operating system 'slc7'.
+         This is not supported and likely will not work and you might get build/runtime errors. Please either
+         - use correct SCRAM_ARCH to match your host's operating system.
+         - OR use 'cmssw-el6' script to start a singularity container (http://cms-sw.github.io/singularity.html)
+         - OR use host which has 'slc6' installed e.g. lxplus8 for el8, lxplus9 for el9 or lxplus7 for slc7.
+**** Following environment variables are going to be unset.
+       ROOT_GCC_TOOLCHAIN
+       GCC_RUNTIME_LSAN
+       GCC_RUNTIME_TSAN
+       SCONS_LIB_DIR
+       PYTHON27PATH
+       OPENBLAS_NUM_THREADS
+       GCC_RUNTIME_ASAN
+       GOSAMCONTRIB_PATH
+       PYTHON_VALGRIND_SUPP
+       CMSSW_FULL_RELEASE_BASE
+       PYTHON3PATH
+       GENEVA_DATA_DIR
+       VINCIADATA
+       G4ENSDFSTATEDATA
+       THEPEGPATH
+       CSC_TRACK_FINDER_DATA_DIR
+       UTM_XSD_DIR
+       GCC_RUNTIME_UBSAN
+       COMPILER_PATH
+       INTEL_LICENSE_FILE
+       SCRAM_CXX11_ABI
+       ROOT_TTREECACHE_PREFILL
+       TEXMFHOME
+       GSL_CBLAS_LIB
+       ROOT_PATH
+       MLAS_DYNAMIC_CPU_ARCH
+       ROOT_TTREECACHE_SIZE
+       SHERPA_LIBRARY_PATH
+28-Feb-2025 18:33:02 EST  Initiating request to open LHE file cmsgrid_final.lhe
+28-Feb-2025 18:33:02 EST  Successfully opened LHE file cmsgrid_final.lhe
+%MSG-w LogicError:  Pythia8HadronizerFilter:generator@beginRun  28-Feb-2025 18:33:02 EST Run: 1
+::getByLabel: An attempt was made to read a Run product before endRun() was called.
+The product is of type 'LHERunInfoProduct'.
+The specified ModuleLabel was 'externalLHEProducer'.
+The specified productInstanceName was ''.
+
+%MSG
+Begin processing the 1st record. Run 1, Event 1, LumiSection 1 on stream 0 at 28-Feb-2025 18:33:05.025 EST
+28-Feb-2025 18:34:32 EST  Closed LHE file cmsgrid_final.lhe
+
+------------------------------------
+GenXsecAnalyzer:
+------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+Overall cross-section summary 
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Process		xsec_before [pb]		passed	nposw	nnegw	tried	nposw	nnegw 	xsec_match [pb]			accepted [%]	 event_eff [%]
+0		4.471e+01 +/- 9.566e-02		8	8	0	11	11	0	3.252e+01 +/- 6.005e+00		72.7 +/- 13.4	72.7 +/- 13.4
+1		2.750e+01 +/- 9.203e-02		6	5	1	21	14	7	1.571e+01 +/- 9.623e+00		57.1 +/- 35.0	28.6 +/- 9.9
+2		1.335e+01 +/- 8.721e-02		2	2	0	18	14	4	2.670e+00 +/- 1.850e+00		20.0 +/- 13.9	11.1 +/- 7.4
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+Total		8.556e+01 +/- 1.588e-01		16	15	1	50	39	11	4.278e+01 +/- 1.080e+01		50.0 +/- 12.6	32.0 +/- 6.6
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Before matching: total cross section = 8.556e+01 +- 1.588e-01 pb
+After matching: total cross section = 4.278e+01 +- 1.080e+01 pb
+Matching efficiency = 0.3 +/- 0.1   [TO BE USED IN MCM]
+Filter efficiency (taking into account weights)= (0) / (2859.59) = 0.000e+00 +- 0.000e+00
+Filter efficiency (event-level)= (0) / (16) = 0.000e+00 +- 0.000e+00    [TO BE USED IN MCM]
+
+After filter: final cross section = 0.000e+00 +- -nan pb
+After filter: final fraction of events with negative weights = 0.000e+00 +- 0.000e+00
+After filter: final equivalent lumi for 1M events (1/fb) = 0.000e+00 +- 0.000e+00
+TimeReport> Time report complete in 1198.15 seconds
+ Time Summary: 
+ - Min event:   0.0189719
+ - Max event:   7.9821
+ - Avg event:   1.75176
+ - Total loop:  1187.43
+ - Total init:  10.2447
+ - Total job:   1198.15
+ - EventSetup Lock:   7.86781e-06
+ - EventSetup Get:   0.00381804
+ Event Throughput: 0.0421077 ev/s
+ CPU Summary: 
+ - Total loop:  759.418
+ - Total init:  3.28539
+ - Total extra: 0
+ - Total job:   763.075
+ Processing Summary: 
+ - Number of Events:  50
+ - Number of Global Begin Lumi Calls:  1
+ - Number of Global Begin Run Calls: 1
+
+
+=============================================
+
+MessageLogger Summary
+
+ type     category        sev    module        subroutine        count    total
+ ---- -------------------- -- ---------------- ----------------  -----    -----
+    1 GenXSecAnalyzer      -w GenXSecAnalyzer:                      17       17
+    2 LogicError           -w Pythia8Hadronize                       1        1
+    3 TimeReport           -e AfterModEndJob                         1        1
+    4 fileAction           -s ExternalLHEProdu                       2        2
+    5 fileAction           -s ExternalLHEProdu                       1        1
+
+ type    category    Examples: run/evt        run/evt          run/evt
+ ---- -------------------- ---------------- ---------------- ----------------
+    1 GenXSecAnalyzer      PostGlobalEndRun PostGlobalEndRun PostGlobalEndRun
+    2 LogicError           Run: 1                            
+    3 TimeReport           PostGlobalEndRun                  
+    4 fileAction           Run: 1           Run: 1           
+    5 fileAction           End Run: 1                        
+
+Severity    # Occurrences   Total Occurrences
+--------    -------------   -----------------
+Warning                18                  18
+Error                   1                   1
+System                  3                   3
+
+dropped waiting message count 0
