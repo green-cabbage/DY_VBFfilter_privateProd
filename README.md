@@ -2,7 +2,10 @@
 
 ## Step1 get voms proxy: 
 voms-proxy-init --voms cms --out $(pwd)/voms_proxy.txt --hours 4
+export X509_USER_PROXY=$(pwd)/voms_proxy.txt
 
+
+# Using SLURM
 ## Step2
 
 
@@ -14,7 +17,7 @@ fragment file for 2018 is taken from: https://cms-pdmv-prod.web.cern.ch/mcm/publ
 
 ## Step 3
 
-Run on hammer (not cmsenv required)
+Run on hammer (cmsenv not required)
 ```
 sbatch slurm_setup.sh 
 
@@ -32,8 +35,28 @@ scancel -u yun79
 
 ```
 
-## creating eos directory:
+# Using Condor
+## Step 2
+Run on lxplus (cmsenv not required)
+```
+condor_submit condor_sub.sub 
+```
+Check progress on
+```
+condor_q
+```
+
+## Step 3
+cancel all running jobs with
+```
+condor_rm
+```
+
+# creating eos directory:
 
 follow steps in https://www.physics.purdue.edu/Tier2/user-info/tutorials/dfs_commands.php
 
 but gfal doesn't work on hammer or Analysis Facility, but on lxplus
+
+
+
