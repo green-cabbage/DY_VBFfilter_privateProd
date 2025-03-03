@@ -14,7 +14,7 @@ fragment file for 2018 is taken from: https://cms-pdmv-prod.web.cern.ch/mcm/publ
 
 ## Step 3
 
-Run
+Run on hammer (not cmsenv required)
 ```
 sbatch slurm_setup.sh 
 
@@ -31,3 +31,9 @@ cancel all running jobs with
 scancel -u yun79
 
 ```
+
+## creating eos directory:
+
+follow steps in https://www.physics.purdue.edu/Tier2/user-info/tutorials/dfs_commands.php
+
+but gfal doesn't work on hammer or Analysis Facility, but on lxplus

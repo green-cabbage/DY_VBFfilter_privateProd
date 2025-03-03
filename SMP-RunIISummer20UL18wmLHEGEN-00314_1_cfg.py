@@ -65,7 +65,8 @@ process.RAWSIMoutput = cms.OutputModule("PoolOutputModule",
         filterName = cms.untracked.string('')
     ),
     eventAutoFlushCompressedSize = cms.untracked.int32(20971520),
-    fileName = cms.untracked.string('file:SMP-RunIISummer20UL18wmLHEGEN-00314.root'),
+    # fileName = cms.untracked.string('file:SMP-RunIISummer20UL18wmLHEGEN-00314.root'),
+    fileName = cms.untracked.string(options.outputFile),
     outputCommands = process.RAWSIMEventContent.outputCommands,
     splitLevel = cms.untracked.int32(0)
 )
@@ -76,7 +77,7 @@ process.LHEoutput = cms.OutputModule("PoolOutputModule",
         filterName = cms.untracked.string('')
     ),
     # fileName = cms.untracked.string('file:SMP-RunIISummer20UL18wmLHEGEN-00314_inLHE.root'),
-    fileName = cms.untracked.string(options.outputFile),
+    fileName = cms.untracked.string((options.outputFile).replace(".root","_inLHE.root")),
     outputCommands = process.LHEEventContent.outputCommands,
     splitLevel = cms.untracked.int32(0)
 )
