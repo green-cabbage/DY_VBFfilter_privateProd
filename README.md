@@ -58,5 +58,11 @@ follow steps in https://www.physics.purdue.edu/Tier2/user-info/tutorials/dfs_com
 
 but gfal doesn't work on hammer or Analysis Facility, but on lxplus
 
+ie
 
+```
+gfal-mkdir -p davs://eos.cms.rcac.purdue.edu:9000/store/user/hyeonseo/Run2UL/UL2018/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/gensim
+```
+
+The -p mode generate the parent directories if doesn't exist
 
