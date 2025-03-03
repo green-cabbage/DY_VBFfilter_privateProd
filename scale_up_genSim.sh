@@ -24,7 +24,6 @@ echo ""
 
 
 
-seed=$(($1 + $2))
 
 
 cat <<'EndOfLHE' > EndOfLHE.sh
@@ -45,7 +44,9 @@ step6=CMSSW_10_6_20
 step6_cfg=SMP-RunIISummer20UL18MiniAODv2-00110_1_cfg.py
 
 
+seed=$(($1 + $2))
 
+echo "seed: $seed"
 export SCRAM_ARCH=slc7_amd64_gcc700
 source /cvmfs/cms.cern.ch/cmsset_default.sh
 echo "###################################################"
@@ -54,8 +55,8 @@ export SCRAM_ARCH=slc7_amd64_gcc700
 if [ -r ${step1}/src ] ; then
     echo release ${step1} already exists
     echo deleting release ${step1}
-    rm -rf ${step1}
-    scram p CMSSW ${step1}
+    # rm -rf ${step1}
+    # scram p CMSSW ${step1}
 else
     scram p CMSSW ${step1}
 fi
@@ -66,6 +67,7 @@ cd ${step1}/src
 eval `scram runtime -sh`
 scram b
 cd -
+echo "cmsRun ${step1_cfg} seedval=${seed} outputFile=root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Test/genSim_$1_$2.root"
 cmsRun ${step1_cfg} seedval=${seed} outputFile=root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Test/genSim_$1_$2.root
 echo "list all files"
 ls -ltrh

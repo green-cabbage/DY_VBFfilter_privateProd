@@ -15,7 +15,9 @@ options.register('seedval',
             VarParsing.varType.int,
             "random seed for event generation"
 )
+options.parseArguments()
 process = cms.Process('GEN',Run2_2018)
+
 
 # import of standard configurations
 process.load('Configuration.StandardSequences.Services_cff')
@@ -32,7 +34,7 @@ process.load('Configuration.StandardSequences.EndOfProcess_cff')
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
 process.MessageLogger.cerr.FwkReport.reportEvery = cms.untracked.int32(500)
 
-Nevents = 50 # 25000
+Nevents = 10 # 25000
 process.maxEvents = cms.untracked.PSet(
     input = cms.untracked.int32(Nevents)
 )
@@ -53,7 +55,8 @@ process.configurationMetadata = cms.untracked.PSet(
 )
 
 # Output definition
-
+print("options.outputFile:", options.outputFile)
+print("options.seed value: ", options.seedval)
 process.RAWSIMoutput = cms.OutputModule("PoolOutputModule",
     SelectEvents = cms.untracked.PSet(
         SelectEvents = cms.vstring('generation_step')
