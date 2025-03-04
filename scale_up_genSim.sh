@@ -30,6 +30,9 @@ cat <<'EndOfLHE' > EndOfLHE.sh
 #!/bin/bash
 
 # Setting up CMSSW versions and configuration files
+cmssw_dir="/tmp/yun79/dy_$1_$2/"
+working_dir=$(pwd)
+echo "working_dir: ${working_dir}"
 step1=CMSSW_10_6_28_patch1
 step1_cfg=SMP-RunIISummer20UL18wmLHEGEN-00314_1_cfg.py
 step2=CMSSW_10_6_17_patch1
@@ -49,6 +52,9 @@ seed=$(($1 + $2))
 echo "seed: $seed"
 export SCRAM_ARCH=slc7_amd64_gcc700
 source /cvmfs/cms.cern.ch/cmsset_default.sh
+echo "CMSSW directory: $cmssw_dir"
+mkdir -p $cmssw_dir
+cd $cmssw_dir
 echo "###################################################"
 echo "Running step1..."
 export SCRAM_ARCH=slc7_amd64_gcc700
@@ -67,9 +73,14 @@ cd ${step1}/src
 eval `scram runtime -sh`
 scram b
 cd -
+# cd $working_dir
+# echo "working_dir: ${working_dir}"
+echo "cp ${working_dir}/${step1_cfg} . "
+cp ${working_dir}/${step1_cfg} . 
+echo "Current directory: $(pwd)"
 echo "cmsRun ${step1_cfg} seedval=${seed} outputFile=root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Test/genSim_$1_$2.root"
-# cmsRun ${step1_cfg} seedval=${seed} outputFile=root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Test/genSim_$1_$2.root
-cmsRun ${step1_cfg} seedval=${seed} outputFile=root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Run2UL/UL2018/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/gensim/genSim_$1_$2.root
+cmsRun ${step1_cfg} seedval=${seed} outputFile=root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Test/genSim_$1_$2.root
+# cmsRun ${step1_cfg} seedval=${seed} outputFile=root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Run2UL/UL2018/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/gensim/genSim_$1_$2.root
 
 echo "list all files"
 ls -ltrh
@@ -79,6 +90,11 @@ echo "Copying output nanoAOD file to output directory"
 ls -ltrh
 # echo "cp -f RunIISummer20UL18wmLHEGEN-00314_inLHE.root $3/genSim_$1_$2.root"
 # cp -f RunIISummer20UL18wmLHEGEN-00314_inLHE.root $3/genSim_$1_$2.root
+
+cd ..
+echo "Current directory: $(pwd)"
+echo "removing directory: rm -r ${cmssw_dir}"
+rm -r ${cmssw_dir}
 echo "Job finished on " $(date)
 
 EndOfLHE
