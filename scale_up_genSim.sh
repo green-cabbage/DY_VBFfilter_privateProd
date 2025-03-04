@@ -80,8 +80,8 @@ cp ${working_dir}/${step1_cfg} .
 echo "Current directory: $(pwd)"
 echo "cmsRun ${step1_cfg} seedval=${seed} outputFile=root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Test/genSim_$1_$2.root"
 # cmsRun ${step1_cfg} seedval=${seed} outputFile=root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Test/genSim_$1_$2.root
-# cmsRun ${step1_cfg} seedval=${seed} outputFile=root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Run2UL/UL2018/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/gensim/genSim_$1_$2.root
-cmsRun ${step1_cfg} seedval=${seed} outputFile=root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Run2UL/UL2018/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/gensim_lxplus/genSim_$1_$2.root
+# cmsRun ${step1_cfg} seedval=${seed} outputFile=root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Run2UL/UL2018/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/gensim_hammer/genSim_$1_$2.root # hammer
+cmsRun ${step1_cfg} seedval=${seed} outputFile=root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Run2UL/UL2018/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/gensim_lxplus/genSim_$1_$2.root  # lxplus
 
 
 echo "list all files"

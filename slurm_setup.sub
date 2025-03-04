@@ -3,10 +3,10 @@
 #SBATCH --output=/depot/cms/users/yun79/privateSampleProduction/DY_VBFfilter_privateProd/UL2018_GEN_SIM/genASIM_%A_%a.out
 #SBATCH --error=/depot/cms/users/yun79/privateSampleProduction/DY_VBFfilter_privateProd/UL2018_GEN_SIM/genASIM_%A_%a.err
 #SBATCH --account=cms
-#SBATCH --array=1-5000                    # Task array range (modify this according to your input file count): Total 10948 files
+#SBATCH --array=1-5000                   # Task array range (modify this according to your input file count): Total 10948 files
 #SBATCH --ntasks=1                     # Number of tasks per job
-#SBATCH --cpus-per-task=4              # Number of CPUs per task
-#SBATCH --mem=8000                    # Memory per task
+#SBATCH --cpus-per-task=2              # Number of CPUs per task
+#SBATCH --mem=3000                    # Memory per task
 #SBATCH --time=52:00:00                # Max run time for each task (HH:MM:SS)
 #SBATCH --get-user-env                 # Get environment variables for the job
 
