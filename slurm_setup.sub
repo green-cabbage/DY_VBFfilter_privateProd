@@ -19,5 +19,5 @@ outputDirectory="GenSim"
 echo "Processing job ${SLURM_ARRAY_TASK_ID} "
 
 # Run the main script
-echo "sh scale_up_genSim.sh $SLURM_ARRAY_JOB_ID $SLURM_ARRAY_TASK_ID $outputDirectory"
-sh scale_up_genSim.sh $SLURM_ARRAY_JOB_ID $SLURM_ARRAY_TASK_ID $outputDirectory
+echo "sh scale_up_genSim_slurm.sh $SLURM_ARRAY_JOB_ID $SLURM_ARRAY_TASK_ID $outputDirectory"
+sh scale_up_genSim_slurm.sh $SLURM_ARRAY_JOB_ID $SLURM_ARRAY_TASK_ID $outputDirectory
