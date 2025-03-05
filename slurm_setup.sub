@@ -7,7 +7,7 @@
 #SBATCH --ntasks=1                     # Number of tasks per job
 #SBATCH --cpus-per-task=2              # Number of CPUs per task
 #SBATCH --mem=3000                    # Memory per task
-#SBATCH --time=52:00:00                # Max run time for each task (HH:MM:SS)
+#SBATCH --time=12:00:00                # Max run time for each task (HH:MM:SS)
 #SBATCH --get-user-env                 # Get environment variables for the job
 
 
@@ -19,5 +19,5 @@ outputDirectory="GenSim"
 echo "Processing job ${SLURM_ARRAY_TASK_ID} "
 
 # Run the main script
-echo "sh scale_up_genSim.sh $SLURM_ARRAY_JOB_ID $SLURM_ARRAY_TASK_ID $outputDirectory"
-sh scale_up_genSim.sh $SLURM_ARRAY_JOB_ID $SLURM_ARRAY_TASK_ID $outputDirectory
+echo "sh scale_up_genSim_slurm.sh $SLURM_ARRAY_JOB_ID $SLURM_ARRAY_TASK_ID $outputDirectory"
+sh scale_up_genSim_slurm.sh $SLURM_ARRAY_JOB_ID $SLURM_ARRAY_TASK_ID $outputDirectory
