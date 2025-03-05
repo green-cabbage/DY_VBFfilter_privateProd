@@ -19,7 +19,7 @@ fragment file for 2018 is taken from: https://cms-pdmv-prod.web.cern.ch/mcm/publ
 
 Run on hammer (cmsenv not required)
 ```
-sbatch slurm_setup.sh 
+sbatch slurm_setup.sub
 
 ```
 
