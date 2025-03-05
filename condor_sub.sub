@@ -1,4 +1,4 @@
-Executable = scale_up_genSim.sh
+Executable = scale_up_genSim_condor.sh
 Universe = vanilla
 Notification = ERROR
 Should_Transfer_Files = YES
