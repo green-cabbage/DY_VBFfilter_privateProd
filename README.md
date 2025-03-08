@@ -66,3 +66,26 @@ gfal-mkdir -p davs://eos.cms.rcac.purdue.edu:9000/store/user/hyeonseo/Run2UL/UL2
 
 The -p mode generate the parent directories if doesn't exist
 
+# Using Crab
+
+## step 1
+
+Assuming you have CMSSW and necessaryu portions pre-installed already (in genSim case, that's CMSSW_10_6_28_patch1):
+
+```
+source /cvmfs/cms.cern.ch/cmsset_default.sh
+source /cvmfs/cms.cern.ch/crab3/crab.sh
+cmssw-el7 --bind /depot:/depot
+voms-proxy-init -voms cms
+
+export SCRAM_ARCH=slc7_amd64_gcc700
+cd CMSSW_10_6_28_patch1/src
+cmsenv
+scram b 
+cd ../../
+
+
+crab submit -c crab_genSim.py --dryrun
+crab submit -c crab_genSim.py 
+
+```
