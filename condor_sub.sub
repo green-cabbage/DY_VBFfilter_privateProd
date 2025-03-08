@@ -1,9 +1,9 @@
-Executable = scale_up_genSim.sh
+Executable = scale_up_genSim_condor.sh
 Universe = vanilla
 Notification = ERROR
 Should_Transfer_Files = YES
 Transfer_Output_Files = ""
-Transfer_Input_Files = scale_up_genSim.sh, SMP-RunIISummer20UL18wmLHEGEN-00314_1_cfg.py
+Transfer_Input_Files = scale_up_genSim_condor.sh, SMP-RunIISummer20UL18wmLHEGEN-00314_1_cfg.py
 x509userproxy = $ENV(X509_USER_PROXY)
 getenv      = True
 +JobFlavour = "testmatch"
