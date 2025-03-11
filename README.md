@@ -89,3 +89,8 @@ crab submit -c crab_genSim.py --dryrun
 crab submit -c crab_genSim.py 
 
 ```
+
+For resubmission, use the resubmission script (assuming the proper CMSSW is setup)
+```
+sh crab_resubmission.sh
+```
