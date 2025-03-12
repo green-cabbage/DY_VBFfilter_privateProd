@@ -6,7 +6,10 @@
 import FWCore.ParameterSet.Config as cms
 
 from Configuration.Eras.Era_Run2_2018_cff import Run2_2018
+from FWCore.ParameterSet.VarParsing import VarParsing
 
+options = VarParsing('analysis')
+options.parseArguments()
 process = cms.Process('SIM',Run2_2018)
 
 # import of standard configurations
@@ -21,15 +24,23 @@ process.load('Configuration.StandardSequences.MagneticField_cff')
 process.load('Configuration.StandardSequences.SimIdeal_cff')
 process.load('Configuration.StandardSequences.EndOfProcess_cff')
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
-process.MessageLogger.cerr.FwkReport.reportEvery = cms.untracked.int32(500)
+process.MessageLogger.cerr.FwkReport.reportEvery = cms.untracked.int32(250)
 
 process.maxEvents = cms.untracked.PSet(
     input = cms.untracked.int32(-1)
+    # input = cms.untracked.int32(2)
+    # input = cms.untracked.int32(10)
 )
 
 # Input source
+print("SIM step options.inputFiles:", options.inputFiles)
+inputFiles =  options.inputFiles[0]
+with open(inputFiles, "r") as file:
+    in_filenames = file.read().splitlines()  # Reads lines without trailing newline characters
+# print("SIM step in_filenames:", in_filenames)
 process.source = cms.Source("PoolSource",
-    fileNames = cms.untracked.vstring('file:SMP-RunIISummer20UL18wmLHEGEN-00314.root'),
+    # fileNames = cms.untracked.vstring('file:SMP-RunIISummer20UL18wmLHEGEN-00314.root'),
+    fileNames = cms.untracked.vstring(in_filenames),
     secondaryFileNames = cms.untracked.vstring()
 )
 
