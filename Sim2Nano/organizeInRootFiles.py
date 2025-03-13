@@ -67,11 +67,15 @@ def getCrabGensimFiledict(base_path: str, dates: list, chunksize=500) -> dict:
 
 base_path = "/eos/purdue/store/user/hyeonseo/Run2UL/UL2018/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/gensim_crab_1"
 
-dates = [
+dates = [ # order of which the jobs succeeded with 100% completion
     "250307_134706", 
     "250308_023802",
+    "250309_133626",
+    "250309_152409", # March 12 2025 out_4000.txt
+    "250310_012204", 
+    "250310_142512", # March 13 2025 out_6000.txt
 ]
-chunksize = 500
+chunksize = 10 #50 # 250 #500
 file_dict = getCrabGensimFiledict(base_path, dates, chunksize=chunksize)
 # print(len(file_dict))
 # print(file_dict.keys())
