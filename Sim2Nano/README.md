@@ -38,3 +38,16 @@ ie (do this on lxplus)
 voms-proxy-init --voms cms 
 gfal-mkdir -p davs://eos.cms.rcac.purdue.edu:9000/store/user/hyeonseo/Run2UL/UL2018/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/nanoV12_hammer
 ```
+
+# for resubmission
+
+```
+cd resubmission
+python get_missing_files.py
+```
+this will result in missing_files.txt being generated. then do
+```
+voms-proxy-init --voms cms --out $(pwd)/voms_proxy.txt --hours 4
+export X509_USER_PROXY=$(pwd)/voms_proxy.txt
+sh resubmit_slurm.sh
+```
