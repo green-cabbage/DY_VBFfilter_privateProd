@@ -57,7 +57,7 @@ sh resubmit_slurm.sh
 ```
 
 
-## SLURM 
+## condor (Run on lxplus (cmsenv not required)))
 # creating eos directory:
 
 follow steps in https://www.physics.purdue.edu/Tier2/user-info/tutorials/dfs_commands.php
@@ -69,4 +69,19 @@ ie (do this on lxplus)
 ```
 voms-proxy-init --voms cms 
 gfal-mkdir -p davs://eos.cms.rcac.purdue.edu:9000/store/user/hyeonseo/Run2UL/UL2018/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/nanoV12_lxplus
+```
+
+upload "input_dict.json". Then run
+```
+sh generateInputFileNumbers_condor.sh 
+```
+
+This gerneates input_fileNumbers_condor.txt for condor_sub.sub
+
+```
+condor_submit condor_sub.sub 
+```
+Check progress on
+```
+condor_q
 ```
