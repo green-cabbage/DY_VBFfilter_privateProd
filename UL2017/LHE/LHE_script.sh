@@ -22,9 +22,7 @@ export APPTAINER_BINDPATH='/afs,/cvmfs,/cvmfs/grid.cern.ch/etc/grid-security:/et
 voms-proxy-init --voms cms --out $(pwd)/voms_proxy.txt --hours 4
 export X509_USER_PROXY=$(pwd)/voms_proxy.txt
 
-# Download fragment from McM
-# curl -s -k https://cms-pdmv-prod.web.cern.ch/mcm/public/restapi/requests/get_fragment/SMP-RunIISummer20UL17wmLHEGEN-00320 --retry 3 --create-dirs -o Configuration/GenProduction/python/SMP-RunIISummer20UL17wmLHEGEN-00320-fragment.py
-# [ -s Configuration/GenProduction/python/SMP-RunIISummer20UL17wmLHEGEN-00320-fragment.py ] || exit $?;
+# We assume fragment.py file was made and uploaded
 
 # Dump actual test code to a SMP-RunIISummer20UL17wmLHEGEN-00320_test.sh file that can be run in Singularity
 cat <<'EndOfTestFile' > SMP-RunIISummer20UL17wmLHEGEN-00320_test.sh
@@ -61,7 +59,7 @@ EVENTS=5040
 
 
 # cmsDriver command
-cmsDriver.py Configuration/GenProduction/python/SMP-RunIISummer20UL17wmLHEGEN-00320-fragment.py --eventcontent RAWSIM,LHE --customise Configuration/DataProcessing/Utils.addMonitoring --datatier GEN,LHE --conditions 106X_mc2017_realistic_v6 --beamspot Realistic25ns13TeVEarly2017Collision --step LHE,GEN --geometry DB:Extended --era Run2_2017 --python_filename SMP-RunIISummer20UL17wmLHEGEN-00320_1_cfg.py --fileout file:SMP-RunIISummer20UL17wmLHEGEN-00320.root --no_exec --mc -n $EVENTS || exit $? ;
+cmsDriver.py Configuration/GenProduction/python/SMP-RunIISummer20UL17wmLHEGEN-00320-fragment_4VBFFilter.py --eventcontent RAWSIM,LHE --customise Configuration/DataProcessing/Utils.addMonitoring --datatier GEN,LHE --conditions 106X_mc2017_realistic_v6 --beamspot Realistic25ns13TeVEarly2017Collision --step LHE,GEN --geometry DB:Extended --era Run2_2017 --python_filename SMP-RunIISummer20UL17wmLHEGEN-00320_1_cfg.py --fileout file:SMP-RunIISummer20UL17wmLHEGEN-00320.root --no_exec --mc -n $EVENTS || exit $? ;
 
 # End of SMP-RunIISummer20UL17wmLHEGEN-00320_test.sh file
 EndOfTestFile
