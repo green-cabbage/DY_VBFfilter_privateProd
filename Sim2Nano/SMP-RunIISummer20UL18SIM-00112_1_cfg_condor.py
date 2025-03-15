@@ -41,7 +41,7 @@ with open("input_dict.json", "r") as f:
 in_filenames = in_dict[inputFiles]
 # print("SIM step in_filenames:", in_filenames)
 in_filenames = [str(filename) for filename in in_filenames]
-# print("SIM step in_filenames after conversion:", in_filenames)
+print("SIM step in_filenames after conversion:", in_filenames)
 process.source = cms.Source("PoolSource",
     # fileNames = cms.untracked.vstring('file:SMP-RunIISummer20UL18wmLHEGEN-00314.root'),
     fileNames = cms.untracked.vstring(in_filenames),

@@ -6,8 +6,8 @@ export APPTAINER_BINDPATH='/cvmfs,/cvmfs/grid.cern.ch/etc/grid-security:/etc/gri
 
 # Make voms proxy
 # voms-proxy-init --voms cms --out $(pwd)/voms_proxy.txt --hours 4
-export X509_USER_PROXY=$(pwd)/voms_proxy.txt
-
+# export X509_USER_PROXY=$(pwd)/voms_proxy.txt
+echo "user proxy: ${X509_USER_PROXY}"
 
 echo "Job started..."
 echo "Starting job on " $(date)
@@ -24,8 +24,6 @@ echo "Input Arguments (input rootfile txt file): $3"
 echo "Input Arguments (output file): $4"
 echo ""
 
-input_fname="root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Run2UL/UL2018/inputFnames/out_$3.txt"
-echo "input_fname: ${input_fname}"
 
 cat <<'EndOfLHE2Mini' > EndOfLHE2Mini.sh
 #!/bin/bash
@@ -169,7 +167,6 @@ else
   exit 1
 fi
 export SINGULARITY_CACHEDIR="/tmp/$(whoami)/singularity"
-# singularity run --no-home /cvmfs/unpacked.cern.ch/registry.hub.docker.com/cmssw/$CONTAINER_NAME $(echo $(pwd)/EndOfLHE2Mini.sh $1 $2 ${input_fname})
 singularity run --no-home /cvmfs/unpacked.cern.ch/registry.hub.docker.com/cmssw/$CONTAINER_NAME $(echo $(pwd)/EndOfLHE2Mini.sh $1 $2 $3)
 
 
@@ -215,7 +212,7 @@ echo "Copying output nanoAOD file to output directory"
 ls -ltrh
 echo "xrdcp -f SMP-RunIISummer20UL18NanoAODv12-00008.root root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Run2UL/UL2018/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/nanoV12_lxplus/$3"
 xrdcp -f SMP-RunIISummer20UL18NanoAODv12-00008.root root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Run2UL/UL2018/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/nanoV12_lxplus/$3
-
+# xrdcp -f SMP-RunIISummer20UL18NanoAODv12-00008.root root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Run2UL/UL2018/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/nano_test/$3
 
 echo "Job finished on " $(date)
 

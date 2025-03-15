@@ -1,9 +1,12 @@
 #!/bin/bash
 
 # Define starting and ending numbers
-starting_number=5001  # Change this as needed
-ending_number=7000  # Change this as needed
-# ending_number=5002 # test
+# starting_number=7001  # Change this as needed
+# ending_number=10000  # Change this as needed
+# ending_number=7002 # test
+
+starting_number=7001  # Change this as needed
+ending_number=10000  # Change this as needed
 
 # Output file
 output_file="input_fileNumbers_condor.txt"

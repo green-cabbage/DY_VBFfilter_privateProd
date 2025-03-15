@@ -51,7 +51,7 @@ python get_missing_files.py
 ```
 this will result in missing_files.txt being generated. then do
 ```
-voms-proxy-init --voms cms --out $(pwd)/voms_proxy.txt --hours 4
+voms-proxy-init --voms cms --out $(pwd)/voms_proxy.txt --hours 48
 export X509_USER_PROXY=$(pwd)/voms_proxy.txt
 sh resubmit_slurm.sh
 ```
