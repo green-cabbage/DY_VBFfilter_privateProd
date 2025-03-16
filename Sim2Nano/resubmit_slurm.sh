@@ -1,21 +1,7 @@
 #!/bin/bash
 
-
-# # missing files, overrides the array
-# file="missing_files.txt"
-# missing_fnames=""
-
-# while IFS= read -r line; do
-#     if [[ -n "$missing_fnames" ]]; then
-#         missing_fnames+=","
-#     fi
-#     missing_fnames+="$line"
-# done < "$file"
-
-# # echo "$missing_fnames"
-
-# echo "sbatch ../slurm_setup.sub --array=${missing_fnames}"
-# sbatch ../slurm_setup.sub --array=${missing_fnames}
+# This script breaks down the output numbers that's missing from the input_file and 
+# breaks into chunks of 10 so that sbatch could safely handle it.
 
 input_file="resubmission/missing_files.txt"   # Change this to your actual input file
 script_to_run="slurm_setup.sub"  # Change this to your actual script

@@ -39,6 +39,7 @@ gfal-mkdir -p davs://eos.cms.rcac.purdue.edu:9000/store/user/hyeonseo/Run2UL/UL2
 ```
 
 # submission
+Before submission, make sure there's no "CMSSW_*" directories present. We had cases where having CMSSW directories crashed the jobs. We want the jobs to make fresh CMSSW envs
 ```
 sbatch scale_up_sim2nano_slurm.sh
 ```
