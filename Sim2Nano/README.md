@@ -85,3 +85,11 @@ Check progress on
 ```
 condor_q
 ```
+
+for resubmission you do :
+```
+cd resubmission
+python get_missing_files.py (we assume you changed the src file to reflect the correct range)
+```
+
+and manually copy and paste the contents in resubmission/missing_files.txt into ./input_fileNumbers_condor.txt

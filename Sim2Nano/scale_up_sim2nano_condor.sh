@@ -6,6 +6,7 @@ export APPTAINER_BINDPATH='/cvmfs,/cvmfs/grid.cern.ch/etc/grid-security:/etc/gri
 
 # Make voms proxy
 # voms-proxy-init --voms cms --out $(pwd)/voms_proxy.txt --hours 4
+# echo "user proxy b4: ${X509_USER_PROXY}"
 # export X509_USER_PROXY=$(pwd)/voms_proxy.txt
 echo "user proxy: ${X509_USER_PROXY}"
 
@@ -67,6 +68,14 @@ echo "cmsRun ${step2_cfg} inputFiles=$3"
 cmsRun ${step2_cfg} inputFiles=$3
 echo "list all files"
 ls -ltrh
+
+# Copy output miniAOD file to output directory
+echo "Copying output miniAOD file to output directory"
+echo "xrdcp -f SMP-RunIISummer20UL18SIM-00112.root root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Run2UL/UL2018/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/sim_lxplus/sim_$4"
+xrdcp -f SMP-RunIISummer20UL18SIM-00112.root root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Run2UL/UL2018/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/sim_lxplus/sim_$4
+# xrdcp -f SMP-RunIISummer20UL18SIM-00112.root root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Run2UL/UL2018/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/nano_test/sim_$4
+
+
 echo "###################################################"
 echo "Running step3..."
 export SCRAM_ARCH=slc7_amd64_gcc700
@@ -152,6 +161,12 @@ cmsRun ${step6_cfg}
 echo "list all files"
 ls -ltrh
 
+# Copy output miniAOD file to output directory
+echo "Copying output miniAOD file to output directory"
+echo "xrdcp -f SMP-RunIISummer20UL18MiniAODv2-00110.root root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Run2UL/UL2018/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/miniV2_lxplus/mini_$4"
+xrdcp -f SMP-RunIISummer20UL18MiniAODv2-00110.root root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Run2UL/UL2018/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/miniV2_lxplus/mini_$4
+# xrdcp -f SMP-RunIISummer20UL18MiniAODv2-00110.root root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Run2UL/UL2018/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/nano_test/mini_$4
+
 EndOfLHE2Mini
 
 
@@ -167,69 +182,69 @@ else
   exit 1
 fi
 export SINGULARITY_CACHEDIR="/tmp/$(whoami)/singularity"
-singularity run --no-home /cvmfs/unpacked.cern.ch/registry.hub.docker.com/cmssw/$CONTAINER_NAME $(echo $(pwd)/EndOfLHE2Mini.sh $1 $2 $3)
+singularity run --no-home /cvmfs/unpacked.cern.ch/registry.hub.docker.com/cmssw/$CONTAINER_NAME $(echo $(pwd)/EndOfLHE2Mini.sh $1 $2 $3 $4)
 
 
 
-# Start the Mini -> Nano process
+# # Start the Mini -> Nano process
 
 
-cat <<'EndOfMini2Nano' > EndOfMini2Nano.sh
-#!/bin/bash
+# cat <<'EndOfMini2Nano' > EndOfMini2Nano.sh
+# #!/bin/bash
 
-export SCRAM_ARCH=el8_amd64_gcc11
+# export SCRAM_ARCH=el8_amd64_gcc11
 
-source /cvmfs/cms.cern.ch/cmsset_default.sh
+# source /cvmfs/cms.cern.ch/cmsset_default.sh
 
-# Setting up CMSSW versions and configuration files
-step7=CMSSW_13_0_14
-step7_cfg=PPD-Run3Summer23NanoAODv12-00008_1_cfg.py
-
-
-echo "###################################################"
-echo "Running step7..."
-if [ -r ${step7}/src ] ; then
-    echo release ${step7} already exists
-    echo deleting release ${step7}
-    rm -rf ${step7}
-    scram p CMSSW ${step7}
-else
-    scram p CMSSW ${step7}
-fi
-echo list files inside ${step7}
-ls ${step7}
-echo "--------"
-cd ${step7}/src
-eval `scram runtime -sh`
-scram b
-cd -
-cmsRun ${step7_cfg}
-echo "list all files"
-ls -ltrh
-
-# Copy output nanoAOD file to output directory
-echo "Copying output nanoAOD file to output directory"
-ls -ltrh
-echo "xrdcp -f SMP-RunIISummer20UL18NanoAODv12-00008.root root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Run2UL/UL2018/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/nanoV12_lxplus/$3"
-xrdcp -f SMP-RunIISummer20UL18NanoAODv12-00008.root root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Run2UL/UL2018/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/nanoV12_lxplus/$3
-# xrdcp -f SMP-RunIISummer20UL18NanoAODv12-00008.root root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Run2UL/UL2018/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/nano_test/$3
-
-echo "Job finished on " $(date)
+# # Setting up CMSSW versions and configuration files
+# step7=CMSSW_13_0_14
+# step7_cfg=PPD-Run3Summer23NanoAODv12-00008_1_cfg.py
 
 
-EndOfMini2Nano
+# echo "###################################################"
+# echo "Running step7..."
+# if [ -r ${step7}/src ] ; then
+#     echo release ${step7} already exists
+#     echo deleting release ${step7}
+#     rm -rf ${step7}
+#     scram p CMSSW ${step7}
+# else
+#     scram p CMSSW ${step7}
+# fi
+# echo list files inside ${step7}
+# ls ${step7}
+# echo "--------"
+# cd ${step7}/src
+# eval `scram runtime -sh`
+# scram b
+# cd -
+# cmsRun ${step7_cfg}
+# echo "list all files"
+# ls -ltrh
+
+# # Copy output nanoAOD file to output directory
+# echo "Copying output nanoAOD file to output directory"
+# ls -ltrh
+# echo "xrdcp -f SMP-RunIISummer20UL18NanoAODv12-00008.root root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Run2UL/UL2018/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/nanoV12_lxplus/$3"
+# xrdcp -f SMP-RunIISummer20UL18NanoAODv12-00008.root root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Run2UL/UL2018/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/nanoV12_lxplus/$3
+# # xrdcp -f SMP-RunIISummer20UL18NanoAODv12-00008.root root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Run2UL/UL2018/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/nano_test/$3
+
+# echo "Job finished on " $(date)
 
 
-# Make file executable
-chmod +x EndOfMini2Nano.sh
+# EndOfMini2Nano
 
-if [ -e "/cvmfs/unpacked.cern.ch/registry.hub.docker.com/cmssw/el8:amd64" ]; then
-  CONTAINER_NAME="el8:amd64"
-elif [ -e "/cvmfs/unpacked.cern.ch/registry.hub.docker.com/cmssw/el8:x86_64" ]; then
-  CONTAINER_NAME="el8:x86_64"
-else
-  echo "Could not find amd64 or x86_64 for el8"
-  exit 1
-fi
-export SINGULARITY_CACHEDIR="/tmp/$(whoami)/singularity"
-singularity run --no-home /cvmfs/unpacked.cern.ch/registry.hub.docker.com/cmssw/$CONTAINER_NAME $(echo $(pwd)/EndOfMini2Nano.sh $1 $2 $4)
+
+# # Make file executable
+# chmod +x EndOfMini2Nano.sh
+
+# if [ -e "/cvmfs/unpacked.cern.ch/registry.hub.docker.com/cmssw/el8:amd64" ]; then
+#   CONTAINER_NAME="el8:amd64"
+# elif [ -e "/cvmfs/unpacked.cern.ch/registry.hub.docker.com/cmssw/el8:x86_64" ]; then
+#   CONTAINER_NAME="el8:x86_64"
+# else
+#   echo "Could not find amd64 or x86_64 for el8"
+#   exit 1
+# fi
+# export SINGULARITY_CACHEDIR="/tmp/$(whoami)/singularity"
+# singularity run --no-home /cvmfs/unpacked.cern.ch/registry.hub.docker.com/cmssw/$CONTAINER_NAME $(echo $(pwd)/EndOfMini2Nano.sh $1 $2 $4)
