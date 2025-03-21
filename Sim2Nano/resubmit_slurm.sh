@@ -3,7 +3,7 @@
 # This script breaks down the output numbers that's missing from the input_file and 
 # breaks into chunks of 10 so that sbatch could safely handle it.
 
-input_file="resubmission/missing_files.txt"   # Change this to your actual input file
+input_file="resubmission/missing_files_slurm.txt"   # Change this to your actual input file
 script_to_run="slurm_setup.sub"  # Change this to your actual script
 
 chunk_size=10
