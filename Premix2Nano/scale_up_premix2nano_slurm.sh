@@ -5,7 +5,7 @@
 export APPTAINER_BINDPATH='/cvmfs,/cvmfs/grid.cern.ch/etc/grid-security:/etc/grid-security,/etc/pki/ca-trust,/run/user,/var/run/user'
 
 # Make voms proxy
-# voms-proxy-init --voms cms --out $(pwd)/voms_proxy.txt --hours 4
+# voms-proxy-init --voms cms --out $(pwd)/voms_proxy.txt --hours 48
 export X509_USER_PROXY=$(pwd)/voms_proxy.txt
 
 echo "Job started..."
@@ -61,36 +61,6 @@ step6_cfg=SMP-RunIISummer20UL18MiniAODv2-00110_1_cfg.py
 
 
 source /cvmfs/cms.cern.ch/cmsset_default.sh
-echo "###################################################"
-echo "Running step2..."
-export SCRAM_ARCH=slc7_amd64_gcc700
-if [ -r ${step2}/src ] ; then
-    echo release ${step2} already exists
-    echo deleting release ${step2}
-    rm -rf ${step2}
-    scram p CMSSW ${step2}
-else
-    scram p CMSSW ${step2}
-fi
-echo list files inside ${step2}
-ls ${step2}
-echo "--------"
-cd ${step2}/src
-eval `scram runtime -sh`
-scram b
-cd -
-echo "cmsRun ${step2_cfg} inputFiles=$3"
-cmsRun ${step2_cfg} inputFiles=$3
-echo "list all files"
-ls -ltrh
-
-# Copy output miniAOD file to output directory
-echo "Copying output miniAOD file to output directory"
-echo "xrdcp -f SMP-RunIISummer20UL18SIM-00112.root root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Run2UL/UL2018/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/sim_hammer/sim_$4"
-xrdcp -f SMP-RunIISummer20UL18SIM-00112.root root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Run2UL/UL2018/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/sim_hammer/sim_$4
-# xrdcp -f SMP-RunIISummer20UL18SIM-00112.root root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Run2UL/UL2018/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/nano_test/sim_$4
-
-
 
 echo "###################################################"
 echo "Running step3..."
@@ -110,7 +80,8 @@ cd ${step3}/src
 eval `scram runtime -sh`
 scram b
 cd -
-cmsRun ${step3_cfg}
+echo "cmsRun ${step3_cfg} inputFiles=$3"
+cmsRun ${step3_cfg} inputFiles=$3
 echo "list all files"
 ls -ltrh
 echo "###################################################"

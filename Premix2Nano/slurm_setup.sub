@@ -1,8 +1,8 @@
 #!/bin/bash
 
 #SBATCH --job-name=nanoAOD_array       # Name of the job array
-#SBATCH --output=/depot/cms/users/yun79/privateSampleProduction/DY_VBFfilter_privateProd/UL2018_sim2nano/sim2nano_%A_%a.out
-#SBATCH --error=/depot/cms/users/yun79/privateSampleProduction/DY_VBFfilter_privateProd/UL2018_sim2nano/sim2nano_%A_%a.err
+#SBATCH --output=/depot/cms/users/yun79/privateSampleProduction/DY_VBFfilter_privateProd/UL2018_premix2nano/premix2nano_%A_%a.out
+#SBATCH --error=/depot/cms/users/yun79/privateSampleProduction/DY_VBFfilter_privateProd/UL2018_premix2nano/premix2nano_%A_%a.err
 #SBATCH --account=cms
 # SBATCH --array=4001-5000   
 #SBATCH --ntasks=1                     # Number of tasks per job
@@ -22,7 +22,8 @@ echo "Processing job Task ID ${SLURM_ARRAY_TASK_ID} "
 echo "Processing job ID ${SLURM_ARRAY_JOB_ID} " 
 # SLURM_ARRAY_TASK_ID is given from the array range
 
+simOut_path="root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Run2UL/UL2018/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/sim_hammer"
 # Run the main script
-echo "sh scale_up_sim2nano_slurm.sh $SLURM_ARRAY_JOB_ID $SLURM_ARRAY_TASK_ID input_fnames/inputFnames/out_${SLURM_ARRAY_TASK_ID}.txt out_${SLURM_ARRAY_TASK_ID}.root"
-sh scale_up_sim2nano_slurm.sh $SLURM_ARRAY_JOB_ID $SLURM_ARRAY_TASK_ID input_fnames/inputFnames/out_${SLURM_ARRAY_TASK_ID}.txt out_${SLURM_ARRAY_TASK_ID}.root
+echo "sh scale_up_premix2nano_slurm.sh $SLURM_ARRAY_JOB_ID $SLURM_ARRAY_TASK_ID ${simOut_path}/sim_out_${SLURM_ARRAY_TASK_ID}.root out_${SLURM_ARRAY_TASK_ID}.root"
+sh scale_up_premix2nano_slurm.sh $SLURM_ARRAY_JOB_ID $SLURM_ARRAY_TASK_ID ${simOut_path}/sim_out_${SLURM_ARRAY_TASK_ID}.root out_${SLURM_ARRAY_TASK_ID}.root
 
