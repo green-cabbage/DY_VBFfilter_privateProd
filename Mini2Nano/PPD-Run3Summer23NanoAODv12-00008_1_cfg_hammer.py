@@ -7,7 +7,11 @@ import FWCore.ParameterSet.Config as cms
 
 from Configuration.Eras.Era_Run2_2018_cff import Run2_2018
 from Configuration.Eras.Modifier_run2_nanoAOD_106Xv2_cff import run2_nanoAOD_106Xv2
+from FWCore.ParameterSet.VarParsing import VarParsing
+import json
 
+options = VarParsing('analysis')
+options.parseArguments()
 process = cms.Process('NANO',Run2_2018,run2_nanoAOD_106Xv2)
 
 # import of standard configurations
@@ -24,12 +28,17 @@ process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
 
 process.maxEvents = cms.untracked.PSet(
     input = cms.untracked.int32(-1),
+    # input = cms.untracked.int32(10),
     output = cms.optional.untracked.allowed(cms.int32,cms.PSet)
 )
 
+
+in_filenames =  options.inputFiles[0]
+print("Mini step in_filenames:", in_filenames)
 # Input source
 process.source = cms.Source("PoolSource",
-    fileNames = cms.untracked.vstring('file:SMP-RunIISummer20UL18MiniAODv2-00110.root'),
+    # fileNames = cms.untracked.vstring('file:SMP-RunIISummer20UL18MiniAODv2-00110.root'),
+    fileNames = cms.untracked.vstring(in_filenames),
     secondaryFileNames = cms.untracked.vstring()
 )
 

@@ -20,7 +20,6 @@ echo "###################################################"
 echo "Input Arguments (Cluster ID): $1"
 echo "Input Arguments (Proc ID): $2"
 echo "Input Arguments (input rootfile txt file): $3"
-echo "Input Arguments (output file): $4"
 echo ""
 
 
@@ -39,13 +38,17 @@ source /cvmfs/cms.cern.ch/cmsset_default.sh
 
 # Setting up CMSSW versions and configuration files
 step7=CMSSW_13_0_14
-step7_cfg=PPD-Run3Summer23NanoAODv12-00008_1_cfg.py
+step7_cfg=PPD-Run3Summer23NanoAODv12-00008_1_cfg_hammer.py
 
 cmssw_dir="/tmp/yun79/dy_$1_$2/"
 working_dir=$(pwd)
 echo "cmssw_dir: ${cmssw_dir}"
 echo "working_dir: ${working_dir}"
+mkdir -p $cmssw_dir
 cd $cmssw_dir
+echo "cp -r ${working_dir}/* . "
+cp -r ${working_dir}/* .
+
 curr_dir=$(pwd)
 echo "current directory: ${curr_dir}"
 
@@ -66,16 +69,17 @@ cd ${step7}/src
 eval `scram runtime -sh`
 scram b
 cd -
-cmsRun ${step7_cfg}
+echo "cmsRun ${step7_cfg} inputFiles=$3"
+cmsRun ${step7_cfg} inputFiles=$3
 echo "list all files"
 ls -ltrh
 
 # Copy output nanoAOD file to output directory
 echo "Copying output nanoAOD file to output directory"
 ls -ltrh
-echo "xrdcp -f SMP-RunIISummer20UL18NanoAODv12-00008.root root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Run2UL/UL2018/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/nanoV12_hammer/$3"
-xrdcp -f SMP-RunIISummer20UL18NanoAODv12-00008.root root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Run2UL/UL2018/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/nanoV12_hammer/$3
-# xrdcp -f SMP-RunIISummer20UL18NanoAODv12-00008.root root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Run2UL/UL2018/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/nano_test/$3
+echo "xrdcp -f SMP-RunIISummer20UL18NanoAODv12-00008.root root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Run2UL/UL2018/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/nanoV12_hammer/$4"
+xrdcp -f SMP-RunIISummer20UL18NanoAODv12-00008.root root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Run2UL/UL2018/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/nanoV12_hammer/$4
+# xrdcp -f SMP-RunIISummer20UL18NanoAODv12-00008.root root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Run2UL/UL2018/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/nano_test/$4
 
 
 cd ..
@@ -100,4 +104,4 @@ else
   exit 1
 fi
 export SINGULARITY_CACHEDIR="/tmp/$(whoami)/singularity"
-singularity run --no-home /cvmfs/unpacked.cern.ch/registry.hub.docker.com/cmssw/$CONTAINER_NAME $(echo $(pwd)/EndOfMini2Nano.sh $1 $2 $4)
+singularity run --no-home /cvmfs/unpacked.cern.ch/registry.hub.docker.com/cmssw/$CONTAINER_NAME $(echo $(pwd)/EndOfMini2Nano.sh $1 $2 $3 $4)
