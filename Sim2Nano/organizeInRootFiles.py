@@ -50,7 +50,6 @@ def getCrabGensimFiledict(base_path: str, dates: list, chunksize=500) -> dict:
         # Filter out strings that contain "inLHE"
         filelist = [s for s in filelist if "inLHE" not in s]
         # remove /eos/purdue
-        # filelist = [s.replace("/eos/purdue","") for s in filelist]
         filelist = [s.replace("/eos/purdue","root://eos.cms.rcac.purdue.edu/") for s in filelist]
         # print(f"len(filelist): {len(filelist)}")
         total_filelilst += filelist
@@ -79,8 +78,15 @@ dates = [ # order of which the jobs succeeded with 100% completion
     "250309_183426", # condor
     "250311_024801", # condor
     "250312_140157", # March 14 2025 out_10000.txt # condor
+    "250312_191246", # March 21 # SLURM out_11000.txt
+    "250309_231211_complete", # SLURM April 06 out_11001 to out_12000
+    "250310_030410_complete", # SLURM
+    "250311_004941_complete", # SLURM 
 ]
-chunksize = 10 #50 # 250 #500
+
+# TODO: make a dictionary of certain crab runs that's stuck and give the maximum length
+
+chunksize = 10 
 file_dict = getCrabGensimFiledict(base_path, dates, chunksize=chunksize)
 # print(len(file_dict))
 # print(file_dict.keys())
@@ -115,10 +121,7 @@ for date_file_dict in file_dict.values():
         dict2save[number] = input_root_files
 
 # print(f"dict2save: {dict2save}")
-# Save to pickle file
-# with open("input_fnames/input_dict.pkl", "wb") as f:
-#     pickle.dump(dict2save, f)
 
 import json
-with open("input_fnames/input_dict.json", "w") as fout:
+with open("input_dict.json", "w") as fout:
     json.dump(dict2save, fout)

@@ -4,7 +4,7 @@
 #SBATCH --output=/depot/cms/users/yun79/privateSampleProduction/DY_VBFfilter_privateProd/UL2018_sim2nano/sim2nano_%A_%a.out
 #SBATCH --error=/depot/cms/users/yun79/privateSampleProduction/DY_VBFfilter_privateProd/UL2018_sim2nano/sim2nano_%A_%a.err
 #SBATCH --account=cms
-# SBATCH --array=4001-5000   
+# SBATCH --array=11001-12000   
 #SBATCH --ntasks=1                     # Number of tasks per job
 #SBATCH --cpus-per-task=1              # Number of CPUs per task
 #SBATCH --mem=4000                    # Memory per task
@@ -23,6 +23,6 @@ echo "Processing job ID ${SLURM_ARRAY_JOB_ID} "
 # SLURM_ARRAY_TASK_ID is given from the array range
 
 # Run the main script
-echo "sh scale_up_sim2nano_slurm.sh $SLURM_ARRAY_JOB_ID $SLURM_ARRAY_TASK_ID input_fnames/inputFnames/out_${SLURM_ARRAY_TASK_ID}.txt out_${SLURM_ARRAY_TASK_ID}.root"
-sh scale_up_sim2nano_slurm.sh $SLURM_ARRAY_JOB_ID $SLURM_ARRAY_TASK_ID input_fnames/inputFnames/out_${SLURM_ARRAY_TASK_ID}.txt out_${SLURM_ARRAY_TASK_ID}.root
+echo "sh scale_up_sim2nano_slurm.sh $SLURM_ARRAY_JOB_ID $SLURM_ARRAY_TASK_ID ${SLURM_ARRAY_TASK_ID} out_${SLURM_ARRAY_TASK_ID}.root"
+sh scale_up_sim2nano_slurm.sh $SLURM_ARRAY_JOB_ID $SLURM_ARRAY_TASK_ID ${SLURM_ARRAY_TASK_ID} out_${SLURM_ARRAY_TASK_ID}.root
 

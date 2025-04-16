@@ -7,6 +7,7 @@ import FWCore.ParameterSet.Config as cms
 
 from Configuration.Eras.Era_Run2_2018_cff import Run2_2018
 from FWCore.ParameterSet.VarParsing import VarParsing
+import json
 
 options = VarParsing('analysis')
 options.parseArguments()
@@ -34,10 +35,16 @@ process.maxEvents = cms.untracked.PSet(
 
 # Input source
 print("SIM step options.inputFiles:", options.inputFiles)
+# inputFiles =  options.inputFiles[0]
+# with open(inputFiles, "r") as file:
+#     in_filenames = file.read().splitlines()  # Reads lines without trailing newline characters
 inputFiles =  options.inputFiles[0]
-with open(inputFiles, "r") as file:
-    in_filenames = file.read().splitlines()  # Reads lines without trailing newline characters
-# print("SIM step in_filenames:", in_filenames)
+with open("input_dict.json", "r") as f:
+    in_dict = json.load(f)
+in_filenames = in_dict[inputFiles]
+in_filenames = [str(filename) for filename in in_filenames] # json values are not standard string for some reason
+print("SIM step in_filenames after conversion:", in_filenames)
+
 process.source = cms.Source("PoolSource",
     # fileNames = cms.untracked.vstring('file:SMP-RunIISummer20UL18wmLHEGEN-00314.root'),
     fileNames = cms.untracked.vstring(in_filenames),

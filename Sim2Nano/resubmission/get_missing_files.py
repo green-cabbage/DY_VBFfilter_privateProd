@@ -5,14 +5,16 @@ import glob
 
 #----------------------------------------
 load_path = "/eos/purdue/store/user/hyeonseo/Run2UL/UL2018/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/nanoV12_hammer"
-start_num = 1 # hammer
-max_num = 5000 # hammer
+start_num = 11001 # hammer
+max_num = 12000 # hammer
+save_name = "missing_files_slurm.txt"
 #----------------------------------------
 
 #----------------------------------------
 # load_path = "/eos/purdue/store/user/hyeonseo/Run2UL/UL2018/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/nanoV12_lxplus"
 # start_num = 5001 # lxplus
 # max_num = 7000 # lxplus
+# save_name = "missing_files_condor.txt"
 #----------------------------------------
 
 out_filelist = glob.glob(f"{load_path}/*.root")
@@ -31,7 +33,6 @@ for number in range(start_num,(max_num+1)): # starts at 1
 
 # print(missing_numberlist)
 # save the missing list in txt file for resubmission
-save_name = "missing_files.txt"
 with open(save_name, "w") as f:
     f.write("\n".join(missing_numberlist))
 
