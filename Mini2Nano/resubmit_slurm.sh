@@ -30,6 +30,7 @@ for (( i=0; i<$total; i+=chunk_size )); do
     # Call your Python script with comma-separated chunk
     # python3 myscript.py "$joined"
     echo "Processing: $joined"
+    sleep 10 # wait a bit for stability
     echo "sbatch --array=${joined} $script_to_run"
     sbatch "--array=${joined}" $script_to_run # Pass as argument to the script
 done

@@ -191,7 +191,10 @@ cmssw_dir="/tmp/yun79/dy_$1_$2/"
 working_dir=$(pwd)
 echo "cmssw_dir: ${cmssw_dir}"
 echo "working_dir: ${working_dir}"
+mkdir -p $cmssw_dir
 cd $cmssw_dir
+echo "cp -r ${working_dir}/* . "
+cp -r ${working_dir}/* .
 curr_dir=$(pwd)
 echo "current directory: ${curr_dir}"
 

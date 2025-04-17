@@ -14,32 +14,6 @@ chunk=""
 # python3 python3 get_missing_files.py -mode slurm 
 
 
-# while IFS= read -r line; do
-#     # Append line to chunk with a comma
-#     if [[ -z "$chunk" ]]; then
-#         chunk="$line"
-#     else
-#         chunk="$chunk,$line"
-#     fi
-
-#     ((count++))
-
-#     # If 10 lines are collected, process them
-#     if (( count % chunk_size == 0 )); then
-#         echo "Processing: $chunk"
-#         echo "sbatch --array=${chunk} $script_to_run"
-#         sbatch "--array=${chunk}" $script_to_run # Pass as argument to the script
-#         chunk=""  # Reset chunk
-#     fi
-# done < "$input_file"
-
-# # Process any remaining lines (less than 10)
-# if [[ -n "$chunk" ]]; then
-#     echo "Processing: $chunk"
-#     echo "sbatch --array=${chunk} $script_to_run"
-#     sbatch "--array=${chunk}" $script_to_run # Pass as argument to the script
-# fi
-
 
 # Read each line into an array
 mapfile -t numbers < ${input_file}
@@ -55,6 +29,7 @@ for (( i=0; i<$total; i+=chunk_size )); do
 
     # Call your Python script with comma-separated chunk
     # python3 myscript.py "$joined"
+    sleep 5 # pause for a bit for stability
     echo "Processing: $joined"
     echo "sbatch --array=${joined} $script_to_run"
     sbatch "--array=${joined}" $script_to_run # Pass as argument to the script
