@@ -5,8 +5,10 @@ import glob
 
 #----------------------------------------
 load_path = "/eos/purdue/store/user/hyeonseo/Run2UL/UL2018/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/nanoV12_hammer"
-start_num = 11001 # hammer
-max_num = 12000 # hammer
+# start_num = 12001 # hammer
+# max_num = 14000 # hammer
+start_num = 1 # hammer
+max_num = 5000 # hammer
 save_name = "missing_files_slurm.txt"
 #----------------------------------------
 
@@ -31,7 +33,7 @@ for number in range(start_num,(max_num+1)): # starts at 1
         missing_numberlist.append(str(number)) # save the number only
 
 
-# print(missing_numberlist)
+print(missing_numberlist)
 # save the missing list in txt file for resubmission
 with open(save_name, "w") as f:
     f.write("\n".join(missing_numberlist))

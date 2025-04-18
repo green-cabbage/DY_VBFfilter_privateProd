@@ -80,8 +80,8 @@ dates = [ # order of which the jobs succeeded with 100% completion
     "250312_140157", # March 14 2025 out_10000.txt # condor
     "250312_191246", # March 21 # SLURM out_11000.txt
     "250309_231211_complete", # SLURM April 06 out_11001 to out_12000
-    "250310_030410_complete", # SLURM
-    "250311_004941_complete", # SLURM 
+    "250310_030410_complete", # SLURM April 16 out_12001 out_13000
+    "250311_004941_complete", # SLURM April 16 out_13001 out_14000
 ]
 
 # TODO: make a dictionary of certain crab runs that's stuck and give the maximum length
