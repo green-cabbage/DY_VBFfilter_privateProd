@@ -94,13 +94,13 @@ if __name__ == "__main__":
     # get sim step output numbers
     sim_load_path = f"/eos/purdue/store/user/hyeonseo/Run2UL/UL2018/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/sim_{save_path_name}"
     simOut_numbers = getFileNumbers(sim_load_path)
-    print(f"simOut_numbers: {simOut_numbers}")
+    # print(f"simOut_numbers: {simOut_numbers}")
 
 
     # get mini step output numbers
     mini_load_path = f"/eos/purdue/store/user/hyeonseo/Run2UL/UL2018/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/miniV2_{save_path_name}"
     miniOut_numbers = getFileNumbers(mini_load_path)
-    print(f"miniOut_numbers: {miniOut_numbers}")
+    # print(f"miniOut_numbers: {miniOut_numbers}")
 
     # get missing numbers
     missing_numbers = list(set(simOut_numbers) - set(miniOut_numbers))
