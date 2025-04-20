@@ -1,3 +1,4 @@
+# Slurm
 ## step1 compare SIM and Mini output files
 
 compare the output root files from sim and mini eos hammer directories. If missing, we need to re-run those
@@ -19,4 +20,22 @@ export X509_USER_PROXY=$(pwd)/voms_proxy.txt
 
 ```
 source resubmit_slurm.sh 
+```
+
+
+
+# condor (Run on lxplus (cmsenv not required)))
+## creating eos directory:
+
+```
+python get_missing_files.py -mode condor
+```
+This gerneates missing_files_condor.txt for condor_sub.sub
+
+```
+condor_submit condor_sub.sub 
+```
+Check progress on
+```
+condor_q
 ```
