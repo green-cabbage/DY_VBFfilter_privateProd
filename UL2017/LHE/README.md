@@ -40,7 +40,7 @@ cd ../../
 
 
 crab submit -c crab_genSim.py --dryrun
-crab submit -c crab_genSim.py 
+crab-pre submit -c crab_genSim.py 
 
 ```
 

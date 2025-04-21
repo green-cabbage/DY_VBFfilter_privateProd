@@ -22,9 +22,12 @@ config.JobType.maxJobRuntimeMin = 1440 #2750*2 ##this is in minutes
 # config.General.workArea = 'crab_projects_gensim_crab_2'
 # config.General.workArea = 'crab_projects_gensim_crab_3'
 # config.General.workArea = 'crab_projects_gensim_crab_4'
-config.General.workArea = 'crab_projects_gensim_crab_5'
+# config.General.workArea = 'crab_projects_gensim_crab_5'
 # config.General.workArea = 'crab_projects_gensim_crab_6'
 # config.General.workArea = 'crab_projects_gensim_crab_7'
+# config.General.workArea = 'crab_projects_gensim_crab_8'
+config.General.workArea = 'crab_projects_gensim_crab_9'
+
 config.Data.outputDatasetTag = "gensim_crab_1"
 # config.Data.outputDatasetTag = "gensim_test"
 config.Data.unitsPerJob = 10000
