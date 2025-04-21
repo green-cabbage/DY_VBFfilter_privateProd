@@ -26,7 +26,7 @@ def getBadFile(fname):
         # return f"An error occurred with file {fname}: {e}"
         return fname # bad fileclient
 
-def getBadFileParallelize(filelist, max_workers=20):
+def getBadFileParallelize(filelist, max_workers=120):
     # print(filelist)
     with concurrent.futures.ProcessPoolExecutor(max_workers=max_workers) as executor:
         # Submit each file check to the executor
