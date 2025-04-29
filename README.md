@@ -1,7 +1,7 @@
 # DY_VBFfilter_privateProd
 
 ## Step1 get voms proxy: 
-voms-proxy-init --voms cms --out $(pwd)/voms_proxy.txt --hours 48
+voms-proxy-init --voms cms --out $(pwd)/voms_proxy.txt --hours 1000000000
 export X509_USER_PROXY=$(pwd)/voms_proxy.txt
 
 
@@ -94,4 +94,31 @@ crab submit -c crab_genSim.py
 For resubmission, use the resubmission script (assuming the proper CMSSW is setup)
 ```
 sh crab_resubmission.sh
+```
+
+To count number of files in a bash terminal
+```
+ls -1 <path> | wc -l
+
+```
+
+## setting up CMSSW again from scratch
+
+This theorectically you need to do once, but in case it you have to do it again:
+```
+source /cvmfs/cms.cern.ch/cmsset_default.sh
+source /cvmfs/cms.cern.ch/crab3/crab.sh
+cmssw-el7 --bind /depot:/depot
+voms-proxy-init -voms cms
+
+curl -s -k https://cms-pdmv-prod.web.cern.ch/mcm/public/restapi/requests/get_fragment/HIG-RunIIFall18wmLHEGS-00874 --retry 3 --create-dirs -o Configuration/GenProduction/python/HIG-RunIIFall18wmLHEGS-00874-fragment.py
+
+export SCRAM_ARCH=slc7_amd64_gcc700
+cmsrel CMSSW_10_6_28_patch1
+cd CMSSW_10_6_28_patch1/src
+cmsenv
+
+mv ../../Configuration .
+
+scram b
 ```
