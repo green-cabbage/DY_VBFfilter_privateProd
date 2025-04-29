@@ -13,10 +13,26 @@ This code above saves the missing numbers and saves to missing_files_slurm.txt
 
 Run the script. First, grid certificate:
 ```
-voms-proxy-init --voms cms --out $(pwd)/voms_proxy.txt --hours 48
+voms-proxy-init --voms cms --out $(pwd)/voms_proxy.txt --hours 100000
 export X509_USER_PROXY=$(pwd)/voms_proxy.txt
 ```
 
 ```
 source resubmit_slurm.sh 
 ```
+
+
+# condor (Run on lxplus (cmsenv not required)))
+## creating eos directory:
+
+```
+python get_missing_files.py -mode condor
+```
+This gerneates missing_files_condor.txt for condor_sub.sub
+
+```
+condor_submit condor_sub.sub 
+```
+Check progress on
+```
+condor_q

@@ -14,7 +14,7 @@ This code above saves the missing numbers and saves to missing_files_slurm.txt
 
 Run the script. First, grid certificate:
 ```
-voms-proxy-init --voms cms --out $(pwd)/voms_proxy.txt --hours 48
+voms-proxy-init --voms cms --out $(pwd)/voms_proxy.txt --hours 10000
 export X509_USER_PROXY=$(pwd)/voms_proxy.txt
 ```
 

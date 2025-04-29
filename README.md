@@ -1,7 +1,7 @@
 # DY_VBFfilter_privateProd
 
 ## Step1 get voms proxy: 
-voms-proxy-init --voms cms --out $(pwd)/voms_proxy.txt --hours 4
+voms-proxy-init --voms cms --out $(pwd)/voms_proxy.txt --hours 48
 export X509_USER_PROXY=$(pwd)/voms_proxy.txt
 
 
@@ -39,6 +39,7 @@ scancel -u yun79
 ## Step 2
 Run on lxplus (cmsenv not required)
 ```
+voms-proxy-init --voms cms --hours 48
 condor_submit condor_sub.sub 
 ```
 Check progress on
