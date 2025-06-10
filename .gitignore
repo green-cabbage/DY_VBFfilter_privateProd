@@ -1,3 +1,7 @@
-CMSSW*/
+UL2018_sim2nano/
 UL2018_GEN_SIM/
-lheevent/
+*.mk
+*.gz
+CMSSW_*
+*.log
+*.pkl
