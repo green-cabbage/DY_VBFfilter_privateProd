@@ -44,6 +44,14 @@ base_path = f"/eos/purdue/store/user/hyeonseo/Run2UL/{yearUL}/DYJetsToLL_M-105To
 
 dates = [ # order of which the jobs succeeded with 100% completion
     "250316_220541", # SLURM out_1 to out_973
+    "250316_231734", # SLURM out_974 to out_1955
+    "250317_012352", # SLURM out_1956 to out_2941
+    "250317_022751", # SLURM out_2942 to out_out_3929
+    "250317_124704", # SLURM out_3930 to out_out_4920
+    "250317_173737", # SLURM out_4921 to out_5918
+    "250317_174401", # SLURM out_5919 to out_6914
+    "250317_175653", # SLURM out_6915 to out_7911
+    "250417_181016", # SLURM out_7912 to out_8911
 ]
 
 # TODO: make a dictionary of certain crab runs that's stuck and give the maximum length
