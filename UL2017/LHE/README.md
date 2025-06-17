@@ -4,7 +4,15 @@
 voms-proxy-init --voms cms --out $(pwd)/voms_proxy.txt --hours 48
 export X509_USER_PROXY=$(pwd)/voms_proxy.txt
 
+## Step2
 
+
+production chain is taken from (pick 2017 version): https://cms-pdmv-prod.web.cern.ch/mcm/chained_requests?page=0&dataset_name=DYJetsToLL_LHEFilterPtZ-0To50_MatchEWPDG20_TuneCP5_13TeV-amcatnloFXFX-pythia8&shown=143
+
+fragment file for 2018 is taken from: https://cms-pdmv-prod.web.cern.ch/mcm/public/restapi/requests/get_setup/HIG-RunIIFall18wmLHEGS-00874
+
+
+We needed to add the gridpack from RERECO DY VBF-filtered sample plus the VBF-filter definition in the fragment file. The fragment file used for GEN production of 2017 UL is saved at ../Configuration/GenProduction/python/SMP-RunIISummer20UL17wmLHEGEN-00320-fragment_4VBFFilter.py
 
 # creating eos directory:
 
