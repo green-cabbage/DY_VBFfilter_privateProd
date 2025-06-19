@@ -13,12 +13,7 @@ python organizeInRootFiles.py
 # Using SLURM
 ## Step2
 
-
-
-production chain is taken from: https://cms-pdmv-prod.web.cern.ch/mcm/chained_requests?contains=SMP-RunIISummer20UL18MiniAODv2-00110&page=0&shown=15
-
-fragment file for 2018 is taken from: https://cms-pdmv-prod.web.cern.ch/mcm/public/restapi/requests/get_setup/HIG-RunIIFall18wmLHEGS-00874
-
+production chain is taken from (pick 2017 version): https://cms-pdmv-prod.web.cern.ch/mcm/chained_requests?page=0&dataset_name=DYJetsToLL_LHEFilterPtZ-0To50_MatchEWPDG20_TuneCP5_13TeV-amcatnloFXFX-pythia8&shown=143
 
 ## Step 3
 
