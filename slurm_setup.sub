@@ -7,7 +7,7 @@
 #SBATCH --ntasks=1                     # Number of tasks per job
 #SBATCH --cpus-per-task=2              # Number of CPUs per task
 #SBATCH --mem=3000                    # Memory per task
-#SBATCH --time=12:00:00                # Max run time for each task (HH:MM:SS)
+#SBATCH --time=24:00:00                # Max run time for each task (HH:MM:SS)
 #SBATCH --get-user-env                 # Get environment variables for the job
 
 

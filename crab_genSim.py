@@ -16,7 +16,7 @@ config.Data.outLFNDirBase = '/store/user/hyeonseo/Run2UL/UL2018/'
 config.Data.splitting = 'EventBased'
 config.JobType.maxJobRuntimeMin = 1440 #2750*2 ##this is in minutes
 
-# new ext12 case start ----------------------------------------------
+# ----------------------------------------------
 # config.General.workArea = 'crab_projects_gensim_crab_1'
 # config.General.workArea = 'crab_projects_gensim_crab_2'
 # config.General.workArea = 'crab_projects_gensim_crab_3'
@@ -28,13 +28,18 @@ config.JobType.maxJobRuntimeMin = 1440 #2750*2 ##this is in minutes
 # config.General.workArea = 'crab_projects_gensim_crab_9'
 # config.General.workArea = 'crab_projects_gensim_crab_10'
 # config.General.workArea = 'crab_projects_gensim_crab_11'
-config.General.workArea = 'crab_projects_gensim_crab_12'
+# config.General.workArea = 'crab_projects_gensim_crab_12'
+# config.General.workArea = 'crab_projects_gensim_crab_13'
+# config.General.workArea = 'crab_projects_gensim_crab_14'
+# config.General.workArea = 'crab_projects_gensim_crab_15'
+config.General.workArea = 'crab_projects_gensim_crab_16'
+
 
 config.Data.outputDatasetTag = "gensim_crab_1"
 config.Data.unitsPerJob = 10000
 NJOBS = 10000
 config.Data.publication = False # publishing two root files per job is disabled if publishing
-# new ext12 case end ----------------------------------------------
+# ----------------------------------------------
 
 config.Data.totalUnits = config.Data.unitsPerJob * NJOBS
 
