@@ -30,7 +30,7 @@ The -p mode generate the parent directories if doesn't exist
 
 ## step 1
 
-Assuming you have CMSSW and necessaryu portions pre-installed already (in genSim 2016postVFP case, that's CMSSW_10_6_28):
+Assuming you have CMSSW and necessary portions pre-installed already (in genSim 2016postVFP case, that's CMSSW_10_6_28_patch1):
 
 ```
 source /cvmfs/cms.cern.ch/cmsset_default.sh
@@ -39,7 +39,7 @@ cmssw-el7 --bind /depot:/depot
 voms-proxy-init -voms cms --hours 100
 
 export SCRAM_ARCH=slc7_amd64_gcc700
-cd CMSSW_10_6_28/src
+cd CMSSW_10_6_28_patch1/src
 cmsenv
 scram b 
 cd ../../
@@ -50,7 +50,7 @@ crab submit -c crab_genSim.py
 
 ```
 
-NOTE: Before you actually submit, please hard code Nevents parameter in the cfg python file if you haven't done so, and paste them wherever they seem relevant. Compare already made cfg files from other years for reference.
+Before you actually submit, please you have to hard code Nevents parameter in the cfg python file, and paste them wherever they seem relevant. Compare already made cfg files from other years for reference.
 
 
 For resubmission, use the resubmission script (assuming the proper CMSSW is setup)
