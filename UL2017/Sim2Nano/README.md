@@ -1,5 +1,16 @@
 # DY_VBFfilter_privateProd
 
+## Step1 get premix files
+since the das path for neutrino Gun pileup files are broken right now, we need to manually into the files that we can read
+```
+voms-proxy-init --voms cms
+python get_files_on_disk.py /Neutrino_E-10_gun/RunIISummer20ULPrePremix-UL17_106X_mc2017_realistic_v6-v3/PREMIX -u <cern_username> -a T1_US_FNAL_Disk 
+```
+T1_US_FNAL_Disk was the best tier2 US base that had some premix root files at the time of writing
+This will save the root file list in PU_files/pu_filelist.txt
+
+
+
 ## Step1 get voms proxy: 
 voms-proxy-init --voms cms --out $(pwd)/voms_proxy.txt --hours 100
 export X509_USER_PROXY=$(pwd)/voms_proxy.txt
