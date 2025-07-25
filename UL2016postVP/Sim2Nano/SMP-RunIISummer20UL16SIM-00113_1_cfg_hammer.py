@@ -13,7 +13,7 @@ options = VarParsing('analysis')
 options.parseArguments()
 process = cms.Process('SIM',Run2_2016)
 # Print log file every 1000 events
-process.MessageLogger.cerr.FwkReport.reportEvery = cms.untracked.int32(1000)
+# process.MessageLogger.cerr.FwkReport.reportEvery = cms.untracked.int32(1000)
 
 # import of standard configurations
 process.load('Configuration.StandardSequences.Services_cff')
@@ -29,8 +29,8 @@ process.load('Configuration.StandardSequences.EndOfProcess_cff')
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
 
 process.maxEvents = cms.untracked.PSet(
-    # input = cms.untracked.int32(-1),
-    input = cms.untracked.int32(20),
+    input = cms.untracked.int32(-1),
+    # input = cms.untracked.int32(5),
     output = cms.untracked.int32(-1)
 )
 

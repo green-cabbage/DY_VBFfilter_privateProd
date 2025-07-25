@@ -37,7 +37,8 @@ process.maxEvents = cms.untracked.PSet(
 
 # Input source
 process.source = cms.Source("PoolSource",
-    fileNames = cms.untracked.vstring(options.inputFiles),
+    # fileNames = cms.untracked.vstring(options.inputFiles),
+    fileNames = cms.untracked.vstring("file:SMP-RunIISummer20UL16MiniAODv2-00103.root"),
     secondaryFileNames = cms.untracked.vstring()
 )
 
@@ -89,7 +90,8 @@ process.NANOAODSIMoutput = cms.OutputModule("NanoAODOutputModule",
         dataTier = cms.untracked.string('NANOAODSIM'),
         filterName = cms.untracked.string('')
     ),
-    fileName = cms.untracked.string('file:'+options.outputFile),
+    # fileName = cms.untracked.string('file:'+options.outputFile),
+    fileName = cms.untracked.string('file:PPD-RunIISummer20UL16postVFP_NanoAODv12.root'),
     outputCommands = process.NANOAODSIMEventContent.outputCommands
 )
 

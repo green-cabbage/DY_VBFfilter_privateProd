@@ -10,7 +10,7 @@ from Configuration.ProcessModifiers.run2_miniAOD_UL_cff import run2_miniAOD_UL
 
 process = cms.Process('PAT',Run2_2016,run2_miniAOD_UL)
 # Print log file every 1000 events
-process.MessageLogger.cerr.FwkReport.reportEvery = cms.untracked.int32(1000)
+# process.MessageLogger.cerr.FwkReport.reportEvery = cms.untracked.int32(1000)
 
 # import of standard configurations
 process.load('Configuration.StandardSequences.Services_cff')
@@ -32,7 +32,8 @@ process.maxEvents = cms.untracked.PSet(
 
 # Input source
 process.source = cms.Source("PoolSource",
-    fileNames = cms.untracked.vstring(),
+    # fileNames = cms.untracked.vstring(),
+    fileNames = cms.untracked.vstring("file:SMP-RunIISummer20UL16RECO-00113.root"),
     secondaryFileNames = cms.untracked.vstring()
 )
 
