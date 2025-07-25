@@ -25,8 +25,8 @@ process.load('Configuration.StandardSequences.EndOfProcess_cff')
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(215),
-    output = cms.untracked.int32(215)
+    input = cms.untracked.int32(-1),
+    output = cms.untracked.int32(-1)
 )
 
 # Input source
@@ -41,7 +41,7 @@ process.options = cms.untracked.PSet(
 
 # Production Info
 process.configurationMetadata = cms.untracked.PSet(
-    annotation = cms.untracked.string('--eventcontent nevts:215'),
+    annotation = cms.untracked.string('--eventcontent nevts:-1'),
     name = cms.untracked.string('Applications'),
     version = cms.untracked.string('$Revision: 1.19 $')
 )

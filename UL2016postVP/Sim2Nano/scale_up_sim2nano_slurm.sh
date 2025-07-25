@@ -46,21 +46,21 @@ cp -r ${working_dir}/* .
 
 # Setting up CMSSW versions and configuration files
 step2=CMSSW_10_6_17_patch1
-step2_cfg=SMP-RunIISummer20UL17SIM-00109_1_cfg_hammer.py
-step2OutFile=SMP-RunIISummer20UL17SIM-00109.root
+step2_cfg=SMP-RunIISummer20UL16SIM-00113_1_cfg_hammer.py
+step2OutFile=SMP-RunIISummer20UL16SIM-00113.root
 step3=CMSSW_10_6_17_patch1
-step3_cfg=SMP-RunIISummer20UL17DIGIPremix-00109_1_cfg_hammer.py
-step3OutFile=SMP-RunIISummer20UL17DIGIPremix-00109.root
-step4=CMSSW_9_4_14_UL_patch1
-step4_cfg=SMP-RunIISummer20UL17HLT-00109_1_cfg.py
-step4OutFile=SMP-RunIISummer20UL17HLT-00109.root
+step3_cfg=SMP-RunIISummer20UL16DIGIPremix-00110_1_cfg_hammer.py
+step3OutFile=SMP-RunIISummer20UL16DIGIPremix-00110.root
+step4=CMSSW_8_0_33_UL
+step4_cfg=SMP-RunIISummer20UL16HLT-00113_1_cfg.py
+step4OutFile=SMP-RunIISummer20UL16HLT-00113.root
 step5=CMSSW_10_6_17_patch1
-step5_cfg=SMP-RunIISummer20UL17RECO-00109_1_cfg.py 
-step5OutFile=SMP-RunIISummer20UL17RECO-00109.root
-step6=CMSSW_10_6_20
-step6_cfg=SMP-RunIISummer20UL17MiniAODv2-00096_1_cfg.py
-step6OutFile=SMP-RunIISummer20UL17MiniAODv2-00096.root
-yearUL=UL2017
+step5_cfg=SMP-RunIISummer20UL16RECO-00113_1_cfg.py 
+step5OutFile=SMP-RunIISummer20UL16RECO-00113.root
+step6=CMSSW_10_6_25
+step6_cfg=SMP-RunIISummer20UL16MiniAODv2-00103_1_cfg.py
+step6OutFile=SMP-RunIISummer20UL16MiniAODv2-00103.root
+yearUL=UL2016postVFP
 
 
 source /cvmfs/cms.cern.ch/cmsset_default.sh
@@ -90,8 +90,8 @@ ls -ltrh
 # Copy output miniAOD file to output directory
 echo "Copying output miniAOD file to output directory"
 echo "xrdcp -f ${step2OutFile} root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Run2UL/${yearUL}/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/sim_hammer/sim_$4"
-xrdcp -f ${step2OutFile} root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Run2UL/${yearUL}/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/sim_hammer/sim_$4
-# xrdcp -f ${step2OutFile} root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Run2UL/${yearUL}/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/gensim_test/sim_$4
+# xrdcp -f ${step2OutFile} root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Run2UL/${yearUL}/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/sim_hammer/sim_$4
+xrdcp -f ${step2OutFile} root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Run2UL/${yearUL}/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/gensim_test/sim_$4
 
 
 
@@ -183,8 +183,8 @@ ls -ltrh
 # Copy output miniAOD file to output directory
 echo "Copying output miniAOD file to output directory"
 echo "xrdcp -f ${step6OutFile} root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Run2UL/${yearUL}/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/miniV2_hammer/mini_$4"
-xrdcp -f ${step6OutFile} root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Run2UL/${yearUL}/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/miniV2_hammer/mini_$4
-# xrdcp -f ${step6OutFile} root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Run2UL/${yearUL}/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/gensim_test/mini_$4
+# xrdcp -f ${step6OutFile} root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Run2UL/${yearUL}/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/miniV2_hammer/mini_$4
+xrdcp -f ${step6OutFile} root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Run2UL/${yearUL}/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/gensim_test/mini_$4
 
 
 EndOfLHE2Mini
@@ -216,9 +216,9 @@ source /cvmfs/cms.cern.ch/cmsset_default.sh
 
 # Setting up CMSSW versions and configuration files
 step7=CMSSW_13_0_14
-step7_cfg=PPD-RunIISummer20UL17_NanoAODv12_cfg.py
-step7OutFile=PPD-RunIISummer20UL17_NanoAODv12.root
-yearUL=UL2017
+step7_cfg=PPD-RunIISummer20UL16postVFP_NanoAODv12_cfg.py
+step7OutFile=PPD-RunIISummer20UL16preVFP_NanoAODv12.root
+yearUL=UL2016postVFP
 
 cmssw_dir="/tmp/yun79/dy_$1_$2/"
 working_dir=$(pwd)
@@ -256,8 +256,8 @@ ls -ltrh
 echo "Copying output nanoAOD file to output directory"
 ls -ltrh
 echo "xrdcp -f ${step7OutFile} root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Run2UL/${yearUL}/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/nanoV12_hammer/$3"
-xrdcp -f ${step7OutFile} root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Run2UL/${yearUL}/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/nanoV12_hammer/$3
-# xrdcp -f ${step7OutFile} root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Run2UL/${yearUL}/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/gensim_test/$3
+# xrdcp -f ${step7OutFile} root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Run2UL/${yearUL}/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/nanoV12_hammer/$3
+xrdcp -f ${step7OutFile} root://eos.cms.rcac.purdue.edu//store/user/hyeonseo/Run2UL/${yearUL}/DYJetsToLL_M-105To160_VBFFilter_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/gensim_test/$3
 
 
 cd ..
