@@ -9,6 +9,8 @@ from Configuration.Eras.Era_Run2_2016_cff import Run2_2016
 from Configuration.ProcessModifiers.run2_miniAOD_UL_cff import run2_miniAOD_UL
 
 process = cms.Process('PAT',Run2_2016,run2_miniAOD_UL)
+# Print log file every 1000 events
+process.MessageLogger.cerr.FwkReport.reportEvery = cms.untracked.int32(1000)
 
 # import of standard configurations
 process.load('Configuration.StandardSequences.Services_cff')

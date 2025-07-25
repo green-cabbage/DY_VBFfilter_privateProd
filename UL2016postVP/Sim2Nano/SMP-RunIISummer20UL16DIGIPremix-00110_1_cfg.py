@@ -9,6 +9,8 @@ from Configuration.Eras.Era_Run2_2016_cff import Run2_2016
 from Configuration.ProcessModifiers.premix_stage2_cff import premix_stage2
 
 process = cms.Process('DIGI2RAW',Run2_2016,premix_stage2)
+# Print log file every 1000 events
+process.MessageLogger.cerr.FwkReport.reportEvery = cms.untracked.int32(1000)
 
 # import of standard configurations
 process.load('Configuration.StandardSequences.Services_cff')

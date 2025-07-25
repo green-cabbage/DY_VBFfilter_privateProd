@@ -8,6 +8,8 @@ import FWCore.ParameterSet.Config as cms
 from Configuration.Eras.Era_Run2_2016_cff import Run2_2016
 
 process = cms.Process('RECO',Run2_2016)
+# Print log file every 1000 events
+process.MessageLogger.cerr.FwkReport.reportEvery = cms.untracked.int32(1000)
 
 # import of standard configurations
 process.load('Configuration.StandardSequences.Services_cff')
