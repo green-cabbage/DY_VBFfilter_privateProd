@@ -1,0 +1,28 @@
+#!/bin/bash
+
+#SBATCH --job-name=nanoAOD_array       # Name of the job array
+#SBATCH --output=/depot/cms/users/yun79/privateSampleProduction/DY_VBFfilter_privateProd/UL2016preVFP_sim2nano/sim2nano_%A_%a.out
+#SBATCH --error=/depot/cms/users/yun79/privateSampleProduction/DY_VBFfilter_privateProd/UL2016preVFP_sim2nano/sim2nano_%A_%a.err
+#SBATCH --account=cms
+# SBATCH --array=11001-12000   
+#SBATCH --ntasks=1                     # Number of tasks per job
+#SBATCH --cpus-per-task=1              # Number of CPUs per task
+#SBATCH --mem=4000                    # Memory per task
+#SBATCH --time=24:00:00                # Max run time for each task (HH:MM:SS)
+#SBATCH --get-user-env                 # Get environment variables for the job
+
+
+
+
+# configFile=$(sed -n "${SLURM_ARRAY_TASK_ID}p" missing_or_corrupt_files_2016_24Feb.txt | awk '{print $1}')
+# outputDirectory=$(sed -n "${SLURM_ARRAY_TASK_ID}p" missing_or_corrupt_files_2016_24Feb.txt | awk '{print $3}')
+# nEvents=$(sed -n "${SLURM_ARRAY_TASK_ID}p" missing_or_corrupt_files_2016_24Feb.txt | awk '{print $4}')
+
+echo "Processing job Task ID ${SLURM_ARRAY_TASK_ID} " 
+echo "Processing job ID ${SLURM_ARRAY_JOB_ID} " 
+# SLURM_ARRAY_TASK_ID is given from the array range
+
+# Run the main script
+echo "sh scale_up_sim2nano_slurm.sh $SLURM_ARRAY_JOB_ID $SLURM_ARRAY_TASK_ID ${SLURM_ARRAY_TASK_ID} out_${SLURM_ARRAY_TASK_ID}.root"
+sh scale_up_sim2nano_slurm.sh $SLURM_ARRAY_JOB_ID $SLURM_ARRAY_TASK_ID ${SLURM_ARRAY_TASK_ID} out_${SLURM_ARRAY_TASK_ID}.root
+
