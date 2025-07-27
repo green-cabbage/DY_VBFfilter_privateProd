@@ -4,7 +4,7 @@
 since the das path for neutrino Gun pileup files are broken right now, we need to manually into the files that we can read
 ```
 voms-proxy-init --voms cms
-python get_files_on_disk.py /Neutrino_E-10_gun/RunIISummer20ULPrePremix-UL16_106X_mcRun2_asymptotic_v13-v1/PREMIX-u <cern_username> -a T1_US_FNAL_Disk 
+python get_files_on_disk.py /Neutrino_E-10_gun/RunIISummer20ULPrePremix-UL16_106X_mcRun2_asymptotic_v13-v1/PREMIX -u <cern_username> -a T1_US_FNAL_Disk 
 ```
 T1_US_FNAL_Disk was the best tier2 US base that had some premix root files at the time of writing
 This will save the root file list in PU_files/pu_filelist.txt
