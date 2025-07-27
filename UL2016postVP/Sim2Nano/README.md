@@ -9,6 +9,22 @@ python get_files_on_disk.py /Neutrino_E-10_gun/RunIISummer20ULPrePremix-UL16_106
 T1_US_FNAL_Disk was the best tier2 US base that had some premix root files at the time of writing
 This will save the root file list in PU_files/pu_filelist.txt
 
+## Step2 get input_dict.json
+Assuming that the crab jobs are done for the GEN step, then we move to SLURM jobs for Sim-> Nano steps.
+
+you do this by adding the crab job id inside `organizeInRootFiles.py`:
+```
+python organizeInRootFiles.py
+```
+
+## Step3 get missing_files_slurm.txt
+After you get the input_dict.json, you go into resubmission/ directory and manually add fille number you still need to process Sim2Nano step. simply edit the number range in `resubmission/get_missing_files.py` and do:
+```
+cd resubmission
+python get_missing_files.py -mode slurm
+```
+
+You can use this setup to submit SLURM jobs that you aren't techinically resubmitting (ie. submitting jobs for file numbers for the first time)
 
 
 ## Step1 get voms proxy: 
